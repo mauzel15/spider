@@ -51,7 +51,7 @@ class getip:
         cursor = conn.cursor()
         #cursor.execute('create database if not exists ippool')
         cursor.execute('use ippool')
-        #cursor.execute('create table  ippool(id int primary key auto_increment,IP varchar(20),port varchar(10),address varchar(20),type1 varchar(10)) default charset = "utf8";')
+        #cursor.execute('create table if not exists ippool(id int primary key auto_increment,IP varchar(20),port varchar(10),address varchar(20),type1 varchar(10)) default charset = "utf8";')
         for x,y,z,m in zip(iplist,portlist,addrlist,typelist):
             if x.text and y.text and z.text and m.text:
                 cursor.execute('insert into ippool(IP,port,address,type1) values ("%s","%s","%s","%s");'%(x.text, y.text, z.text ,m.text))
