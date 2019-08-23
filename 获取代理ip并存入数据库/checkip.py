@@ -15,20 +15,21 @@ class IpUtils(object):
     # 判断ip是否可用
     def judge_ip(self,type1,IP,port):
         http_url ="http://www.baidu.com"
-        proxy_url ={'{0}':'{1}:{2}'.format(type1,IP,port)}
+        proxy_url ={'{0}': '{1}:{2}'.format(type1,IP,port)}
 
+        #print(proxy_url)
         try:
             proxy_dict = {
-                type: type1, # type 为https 或者http 数据库存储的
+                type:type1, # type 为https 或者http 数据库存储的
             }
             response = requests.get(http_url,proxies=proxy_url)
             code = response.status_code
             if code >= 200 and code < 300:
-                print("effective ip")
+                #print("effective ip")
                 return True
         except Exception as e:
 
-            #self.delete_ip(IP)
+            self.delete_ip(IP)
             print("invalid ip and port")
             return False
 
@@ -58,5 +59,6 @@ class IpUtils(object):
                 return self.get_random_ip()
 
 if __name__ == "__main__":
-    Ip = IpUtils()
-    print(Ip.get_random_ip())
+            Ip = IpUtils()
+
+            print(Ip.get_random_ip())
